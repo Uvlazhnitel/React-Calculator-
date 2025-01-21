@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState(null);
+  const [history, setHistory] = useState([]);
 
   const handleInput = (value) => {
     setResult('')
@@ -21,10 +22,17 @@ function App() {
     setResult('')
   };
 
+  const addToHistory = (input,result) => {
+    if(calculate){
+      setHistory(input + '=' + result);
+    }
+  }
+
   const calculate = () => {
     try {
       const evalResult = eval(input);
       setResult(evalResult);
+      addToHistory(input,evalResult)
     } catch (error) {
       setResult('error')
     }
@@ -60,6 +68,9 @@ function App() {
 
             <button onClick={() => handleInput('0')} className="zero">0</button>
             <button onClick={() => handleInput('.')}>.</button>
+        </div>
+        <div className='history'>
+          {history}
         </div>
     </div>
 );
