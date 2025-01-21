@@ -5,6 +5,11 @@ function App() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState(null);
   const [history, setHistory] = useState([]);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+
+  const togglePanel = () =>{
+    setIsPanelOpen(!isPanelOpen);
+  }
 
   const handleInput = (value) => {
     setResult('')
@@ -28,7 +33,80 @@ function App() {
   };
 
   const calculate = () => {
-    try {
+    try {import React, { useState } from 'react';
+    import './App.css';
+    
+    function App() {
+        const [input, setInput] = useState(''); // Состояние для ввода
+        const [result, setResult] = useState(null); // Состояние для результата
+    
+        // Добавление символа в строку ввода
+        const handleInput = (value) => {
+            setInput(input + value);
+        };
+    
+        // Очистка ввода и результата
+        const clearInput = () => {
+            setInput('');
+            setResult(null);
+        };
+    
+        // Удаление последнего символа
+        const deleteLast = () => {
+            setInput(input.slice(0, -1));
+        };
+    
+        // Обработка вычисления
+        const calculate = () => {
+            try {
+                // Преобразование пользовательского ввода
+                const parsedInput = input
+                    .replace(/√/g, 'Math.sqrt') // Заменяем √ на Math.sqrt
+                    .replace(/\^/g, '**'); // Заменяем ^ на возведение в степень (**)
+    
+                const evalResult = eval(parsedInput); // Вычисляем выражение
+                setResult(evalResult);
+            } catch (error) {
+                setResult('Error');
+            }
+        };
+    
+        return (
+            <div className="calculator">
+                <div className="display">
+                    <div className="input">{input || '0'}</div>
+                    <div className="result">{result !== null ? `= ${result}` : ''}</div>
+                </div>
+                <div className="buttons">
+                    <button onClick={() => handleInput('7')}>7</button>
+                    <button onClick={() => handleInput('8')}>8</button>
+                    <button onClick={() => handleInput('9')}>9</button>
+                    <button onClick={() => handleInput('+')}>+</button>
+    
+                    <button onClick={() => handleInput('4')}>4</button>
+                    <button onClick={() => handleInput('5')}>5</button>
+                    <button onClick={() => handleInput('6')}>6</button>
+                    <button onClick={() => handleInput('-')}>−</button>
+    
+                    <button onClick={() => handleInput('1')}>1</button>
+                    <button onClick={() => handleInput('2')}>2</button>
+                    <button onClick={() => handleInput('3')}>3</button>
+                    <button onClick={() => handleInput('*')}>×</button>
+    
+                    <button onClick={() => handleInput('0')}>0</button>
+                    <button onClick={() => handleInput('.')}>.</button>
+                    <button onClick={() => handleInput('^')}>^</button> {/* Кнопка степени */}
+                    <button onClick={() => handleInput('√')}>√</button> {/* Кнопка корня */}
+    
+                    <button onClick={calculate}>=</button>
+                    <button onClick={clearInput}>AC</button>
+                    <button onClick={deleteLast}>C</button>
+                </div>
+            </div>
+        );
+    }
+    
+    export default App;
       const evalResult = eval(input);
       setResult(evalResult);
       addToHistory(input,evalResult)
@@ -72,6 +150,7 @@ function App() {
 
             <button onClick={() => handleInput('0')} className="zero">0</button>
             <button onClick={() => handleInput('.')}>.</button>
+            <button onClick={() => handleInput('.')}>SC</button>
         </div>
         <div className="history">
         <h3>History</h3>
@@ -79,10 +158,18 @@ function App() {
           {history.map((entry, index) => (
             <li key={index}>
               {entry}
-              <button className = 'deleteBtn'onClick = {() => deleteHistory(index)}>Delete</button></li>
+              <button className = 'deleteBtn' onClick = {() => deleteHistory(index)}>Delete</button></li>
           ))}
         </ul>
-      </div>
+        </div>
+        <div className={`side-panel ${isPanelOpen ? 'open' : ''}`}>
+          <div className='power'>
+            <button onClick={() => handleInput('**')}>√</button>
+          </div>
+          <div className='root'></div>
+          <div className='factorial'></div>
+          <div className='percent'></div>
+        </div>
     </div>
 );
 }
