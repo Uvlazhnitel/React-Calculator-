@@ -8,12 +8,6 @@ body {
     height: 100vh;
 }
 
-.title{
-    text-align: center;
-    font-size: 30px;
-    color: #007bff;
-}
-
 .calculator {
     background-color: white;
     border-radius: 10px;
