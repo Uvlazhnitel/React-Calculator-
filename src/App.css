@@ -63,3 +63,34 @@ button:active {
 button.zero {
     grid-column: span 2; /* Кнопка "0" занимает две колонки */
 }
+
+.history {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 200px; /* Ограничиваем высоту */
+    overflow-y: auto; /* Скроллинг, если слишком длинная история */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.history h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    text-align: center;
+}
+
+.history ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history li {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}

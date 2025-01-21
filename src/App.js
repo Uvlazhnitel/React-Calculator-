@@ -22,11 +22,10 @@ function App() {
     setResult('')
   };
 
-  const addToHistory = (input,result) => {
-    if(calculate){
-      setHistory(input + '=' + result);
-    }
-  }
+  const addToHistory = (input, result) => {
+    const newEntry = `${input} = ${result}`;
+    setHistory([newEntry, ...history]); 
+  };
 
   const calculate = () => {
     try {
@@ -69,9 +68,14 @@ function App() {
             <button onClick={() => handleInput('0')} className="zero">0</button>
             <button onClick={() => handleInput('.')}>.</button>
         </div>
-        <div className='history'>
-          {history}
-        </div>
+        <div className="history">
+        <h3>History</h3>
+        <ul>
+          {history.map((entry, index) => (
+            <li key={index}>{entry}</li>
+          ))}
+        </ul>
+      </div>
     </div>
 );
 }
