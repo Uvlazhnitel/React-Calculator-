@@ -36,6 +36,11 @@ function App() {
       setResult('error')
     }
   };
+
+  const deleteHistory = (index) => {
+    const updateHistory = history.filter((_,i) => i !==index);
+    setHistory(updateHistory);
+  }
   
 
   return (
@@ -72,7 +77,9 @@ function App() {
         <h3>History</h3>
         <ul>
           {history.map((entry, index) => (
-            <li key={index}>{entry}</li>
+            <li key={index}>
+              {entry}
+              <button className = 'deleteBtn'onClick = {() => deleteHistory(index)}>Delete</button></li>
           ))}
         </ul>
       </div>
