@@ -87,22 +87,26 @@ button.zero {
 }
 
 .history li {
-    margin: 5px 0;
+    display: flex; /* Делаем flex-контейнером */
+    justify-content: space-between; /* Распределяем содержимое */
+    align-items: center; /* Выравниваем элементы по центру */
+    margin-bottom: 5px;
     padding: 5px;
-    background-color: #fff;
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 3px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 .deleteBtn {
-    background-color: #a10404;
+    background-color: red;
     color: white;
     border: none;
-    border-radius: 2px;
-    padding: 5px;
-    margin-left:140px;
-    font-size: 18px;
+    border-radius: 3px;
+    padding: 5px 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+}
+
+.deleteBtn:hover {
+    background-color: darkred;
 }
