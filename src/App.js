@@ -51,7 +51,6 @@ function App() {
 
     return (
         <div className="calculator-container">
-            {/* Панель с дополнительными кнопками */}
             <div className={`side-panel ${isPanelOpen ? 'open' : ''}`}>
                 <h3>Advanced Functions</h3>
                 <button onClick={() => handleInput('^')} className="side-button">
@@ -65,7 +64,6 @@ function App() {
                 </button>
             </div>
 
-            {/* Основной калькулятор */}
             <div className="calculator">
                 <div className="display">
                     <div className="input">{input || '0'}</div>
